@@ -7,16 +7,18 @@ for (var i = 0 ; i < squares.length; i++) {
    squares[i].addEventListener('click' , changeSquare , false ); 
 }
 
-function changeSquare() {
-	event.target.classList.remove('empty');
+function changeSquare(event) {
+	event = event || window.event;
+    var elem = event.target || event.srcElement;
+	elem.classList.remove('empty');
 	if (currentTurn === 'blue') {
-		event.target.className += ' square-is-occupied-blue';
+		elem.className += ' square-is-occupied-blue';
 		currentTurn = 'red';
 		turnIndicator.className = 'blueTurn';
 		turnIndicator.className = 'redTurn';
 	}
 	else {
-		event.target.className += ' square-is-occupied-red';
+		elem.className += ' square-is-occupied-red';
 		currentTurn = 'blue';
 		turnIndicator.className = 'redTurn';
 		turnIndicator.className = 'blueTurn';
